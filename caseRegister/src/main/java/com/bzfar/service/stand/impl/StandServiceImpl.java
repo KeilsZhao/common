@@ -39,12 +39,6 @@ public class StandServiceImpl implements StandService {
 
     private String imgUrl = "https://sfpt.cdfy12368.gov.cn:806/gateway/jyytj/lawsuit/api/api/v1/third/file/fileUpload";
 
-    @Value("${api.filePath}")
-    private String filePath;
-
-    @Value("${api.PathUrl}")
-    private String pathUrl;
-
     private String aesKey = "TDHLAWSUITCASE@!";
 
     private String fydm = "511427";

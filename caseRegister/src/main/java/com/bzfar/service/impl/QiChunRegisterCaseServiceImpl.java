@@ -21,7 +21,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class QiChunRegisterCaseServiceImpl implements RegisterCaseService {
 
-    @Value("${qichun.resisterUrl}")
+//    @Value("${qichun.resisterUrl}")
     private String resisterUrl;
 
     @Autowired
