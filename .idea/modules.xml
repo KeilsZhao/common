@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/connectJudge/connectJudge.iml" filepath="$PROJECT_DIR$/connectJudge/connectJudge.iml" />
+      <module fileurl="file://$PROJECT_DIR$/courtAnnouncement/courtAnnouncement.iml" filepath="$PROJECT_DIR$/courtAnnouncement/courtAnnouncement.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/maven_source.iml" filepath="$PROJECT_DIR$/.idea/maven_source.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sms/sms.iml" filepath="$PROJECT_DIR$/sms/sms.iml" />
     </modules>
   </component>
 </project>
