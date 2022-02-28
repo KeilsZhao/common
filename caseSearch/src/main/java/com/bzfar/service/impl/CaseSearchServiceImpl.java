@@ -329,6 +329,7 @@ public class CaseSearchServiceImpl implements CaseSearchService {
             InputStream caseInfo = MockUtil.getFileIo("CaseInfo.json");
             MockCaseInfo mockCaseInfo = objectMapper.readValue(caseInfo, MockCaseInfo.class);
             List<MockCaseDetail> collect1 = mockCaseInfo.getData().stream().filter(item -> item.getAh().equals(ah)).collect(Collectors.toList());
+            AssertUtil.assertNull(collect1,"证件号 暂无信息");
             String lsh = collect1.get(0).getLsh();
             if(collect.contains(lsh)){
                 lawyerCaseInfoVo.setDetail(true);
