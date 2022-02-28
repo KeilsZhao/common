@@ -35,14 +35,6 @@ public class StandServiceImpl implements StandService {
 
     private String bzdmUrl = "https://sfpt.cdfy12368.gov.cn:806/gateway/jyytj/lawsuit/api/api/v1/third/baseCode/getTsBzdmByKind";
 
-    private String laUrl = "https://sfpt.cdfy12368.gov.cn:806/gateway/jyytj/lawsuit/api/api/v1/third/lawCase/saveLawCase";
-
-    private String imgUrl = "https://sfpt.cdfy12368.gov.cn:806/gateway/jyytj/lawsuit/api/api/v1/third/file/fileUpload";
-
-    private String aesKey = "TDHLAWSUITCASE@!";
-
-    private String fydm = "511427";
-
 
     @Override
     public List<Object> queryAy(String lb) {
