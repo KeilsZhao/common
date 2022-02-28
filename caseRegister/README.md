@@ -39,7 +39,7 @@ qichun:
 </dependency>
 ```
 
-####	1.3 调用接口
+####	1.3 调用接口使用详见maven使用说明文档
 
 ```java
 @Autowired
