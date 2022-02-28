@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bindings version="2.1" xmlns="http://java.sun.com/xml/ns/jaxb">
+  <!--
+
+此文件是由 JavaTM Architecture for XML Binding (JAXB) 引用实现 v2.2.11 生成的
+请访问 <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
+在重新编译源模式时, 对此文件的所有修改都将丢失。
+生成时间: 2021.05.25 时间 03:24:59 PM CST 
+
+  -->
+  <bindings scd="x-schema::tns" xmlns:tns="http://www.yysms.com/">
+    <schemaBindings map="false">
+      <package name="com.bzfar.ws"/>
+    </schemaBindings>
+    <bindings scd="tns:SendSms">
+      <class ref="com.bzfar.ws.SendSms"/>
+    </bindings>
+    <bindings scd="~tns:SmsObject">
+      <class ref="com.bzfar.ws.SmsObject"/>
+    </bindings>
+    <bindings scd="tns:SendSmsResponse">
+      <class ref="com.bzfar.ws.SendSmsResponse"/>
+    </bindings>
+    <bindings scd="~tns:SendResult">
+      <class ref="com.bzfar.ws.SendResult"/>
+    </bindings>
+    <bindings scd="tns:SendMms">
+      <class ref="com.bzfar.ws.SendMms"/>
+    </bindings>
+    <bindings scd="~tns:MmsObject">
+      <class ref="com.bzfar.ws.MmsObject"/>
+    </bindings>
+    <bindings scd="tns:SendMmsResponse">
+      <class ref="com.bzfar.ws.SendMmsResponse"/>
+    </bindings>
+    <bindings scd="tns:SendI18NSms">
+      <class ref="com.bzfar.ws.SendI18NSms"/>
+    </bindings>
+    <bindings scd="tns:SendI18NSmsResponse">
+      <class ref="com.bzfar.ws.SendI18NSmsResponse"/>
+    </bindings>
+    <bindings scd="~tns:SendResultBase">
+      <class ref="com.bzfar.ws.SendResultBase"/>
+    </bindings>
+    <bindings scd="tns:SendHybridSms">
+      <class ref="com.bzfar.ws.SendHybridSms"/>
+    </bindings>
+    <bindings scd="tns:SendHybridSmsResponse">
+      <class ref="com.bzfar.ws.SendHybridSmsResponse"/>
+    </bindings>
+    <bindings scd="tns:HybridSend">
+      <class ref="com.bzfar.ws.HybridSend"/>
+    </bindings>
+    <bindings scd="~tns:HybridSms">
+      <class ref="com.bzfar.ws.HybridSms"/>
+    </bindings>
+    <bindings scd="tns:HybridSendResponse">
+      <class ref="com.bzfar.ws.HybridSendResponse"/>
+    </bindings>
+    <bindings scd="~tns:HybridSendResult">
+      <class ref="com.bzfar.ws.HybridSendResult"/>
+    </bindings>
+    <bindings scd="~tns:ArrayOfString">
+      <class ref="com.bzfar.ws.ArrayOfString"/>
+    </bindings>
+    <bindings scd="~tns:I18NSendResult">
+      <class ref="com.bzfar.ws.I18NSendResult"/>
+    </bindings>
+    <bindings scd="~tns:ArrayOfMmsElement">
+      <class ref="com.bzfar.ws.ArrayOfMmsElement"/>
+    </bindings>
+    <bindings scd="~tns:MmsElement">
+      <class ref="com.bzfar.ws.MmsElement"/>
+    </bindings>
+    <bindings scd="~tns:ResultCode">
+      <typesafeEnumClass ref="com.bzfar.ws.ResultCode"/>
+    </bindings>
+    <bindings scd="~tns:MmsElementType">
+      <typesafeEnumClass ref="com.bzfar.ws.MmsElementType"/>
+    </bindings>
+  </bindings>
+</bindings>
+
