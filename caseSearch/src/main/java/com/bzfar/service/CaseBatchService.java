@@ -5,6 +5,8 @@ import com.bzfar.vo.CaseBatchVo;
 
 import java.util.List;
 
+
+@Deprecated
 public interface CaseBatchService {
 
     /**

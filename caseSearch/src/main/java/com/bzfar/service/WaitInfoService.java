@@ -5,6 +5,10 @@ import com.bzfar.vo.WaitInfoVo;
 
 import java.util.List;
 
+/**
+ * 开庭排期接口，已开发新的maven，标准版模拟数据，可直接使用
+ */
+@Deprecated
 public interface WaitInfoService {
 
     /**
