@@ -46,7 +46,6 @@ qichun:
 private RegisterCaseService proxyService;
 
  @PostMapping("/getAllSource")
- @ApiOperation("1.获取项目所需全部图片资源")
  public HttpResult<RegisterCaseVo> caseRegister(@Validated @RequestBody QiChunRegisterDto qiChunRegisterDto){
      RegisterCaseVo registerCaseVo = proxyService.caseRegister(CaseRegisterEnum.QICHUN.getCode(), qiChunRegisterDto);
      return HttpResult.ok(registerCaseVo);
