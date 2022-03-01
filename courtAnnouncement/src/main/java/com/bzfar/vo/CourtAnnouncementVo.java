@@ -17,6 +17,9 @@ import java.util.Date;
 @ApiModel("开庭排期")
 public class CourtAnnouncementVo {
 
+    @ApiModelProperty("代字")
+    private String dz;
+
     @ApiModelProperty("案由明细")
     private String ay;
 

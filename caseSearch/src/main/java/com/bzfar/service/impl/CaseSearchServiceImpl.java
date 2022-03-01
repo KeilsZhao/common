@@ -14,8 +14,7 @@ import com.bzfar.util.DateUtils;
 import com.bzfar.utils.HandleFile;
 import com.bzfar.utils.MockJarPathUtils;
 import com.bzfar.utils.MockUtil;
-import com.bzfar.vo.CaseListVo;
-import com.bzfar.vo.CaseVo;
+import com.bzfar.vo.*;
 import com.bzfar.vo.caseSearch.ThirdCaseResultVo;
 import com.bzfar.vo.caseSearch.ThirdCaseVo;
 import com.bzfar.vo.caseSearch.newCaseInfo.*;
@@ -24,7 +23,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -40,7 +38,6 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
  * 案件查询
