@@ -25,14 +25,11 @@ public class CourtAnnouncementServiceImplTest {
 
     @Test
     public void queryCourtAnnouncementInfo() throws ParseException {
-        String beginDate = "2021-01-02 01:20:00";
-        String endDate = "2022-01-02 01:20:00";
-        SimpleDateFormat sb = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        Date begin = sb.parse(beginDate);
-        Date end = sb.parse(endDate);
+        String beginDate = "2021-01-02";
+        String endDate = "2022-01-02";
         CourtAnnouncementDto build = CourtAnnouncementDto.builder()
-                .beginTime(begin)
-                .endTime(end)
+                .beginTime(beginDate)
+                .endTime(endDate)
                 .build();
         List<CourtAnnouncementVo> courtAnnouncementVos =
                 courtAnnouncementService.queryCourtAnnouncementInfo(build);

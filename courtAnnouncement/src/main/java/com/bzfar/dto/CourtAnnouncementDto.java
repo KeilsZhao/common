@@ -18,12 +18,12 @@ import java.util.Date;
 @ToString
 public class CourtAnnouncementDto {
 
-    @ApiModelProperty("开始时间,格式:YYYY-dd-MM HH:mm:ss")
-    @JsonFormat(pattern = "YYYY-dd-MM HH:mm:ss", timezone = "GMT+8")
-    private Date beginTime;
+    @ApiModelProperty("开始时间,格式:YYYY-dd-MM")
+//    @JsonFormat(pattern = "YYYY-dd-MM", timezone = "GMT+8")
+    private String beginTime;
 
-    @ApiModelProperty("结束时间,格式:YYYY-dd-MM HH:mm:ss")
-    @JsonFormat(pattern = "YYYY-dd-MM HH:mm:ss", timezone = "GMT+8")
-    private Date endTime;
+    @ApiModelProperty("结束时间,格式:YYYY-dd-MM")
+//    @JsonFormat(pattern = "YYYY-dd-MM", timezone = "GMT+8")
+    private String endTime;
 
 }
