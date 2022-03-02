@@ -7,7 +7,7 @@ import lombok.*;
 /**
  * @author Administrator
  */
-@ApiModel("约见法官案件列表获取参数")
+@ApiModel("约见法官信息提交参数")
 @Data
 @Builder
 @AllArgsConstructor
