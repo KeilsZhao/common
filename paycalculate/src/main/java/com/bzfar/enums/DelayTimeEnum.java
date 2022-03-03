@@ -13,15 +13,15 @@ public enum DelayTimeEnum {
     /**
      * 年
      */
-    YEAR(1),
+    YEAR(0),
     /**
      * 月
      */
-    MONTH(2),
+    MONTH(1),
     /**
      * 日
      */
-    DAY(3);
+    DAY(2);
 
     /**
      * code值
@@ -34,6 +34,6 @@ public enum DelayTimeEnum {
 
     @Override
     public String toString() {
-        return "1->年 2->月 3->日";
+        return "0->年 1->月 2->日";
     }
 }
