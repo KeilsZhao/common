@@ -26,12 +26,12 @@ public class DelayDto {
     private String execute;
 
     @ApiModelProperty("开始时间,时间格式：yyyy-MM-dd")
-    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
-    private Date beginTime;
+//    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    private String beginTime;
 
     @ApiModelProperty("结束时间")
-    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
-    private Date endTime;
+//    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    private String endTime;
 
     @ApiModelProperty("年月日选择")
     private DelayTimeEnum delayTime;

@@ -330,6 +330,32 @@ public class DateUtils {
     }
 
     /**
+     * 计算两个日期之间相差天数.
+     *
+     * @param starts 计算开始日期
+     * @param ends   计算结束日期
+     * @return long 相隔天数
+     * @since 1.0
+     */
+    public static long getDaysBetween2(String starts, String ends) {
+        long diff = 0;
+        if (ObjectUtils.isEmpty(starts) || ObjectUtils.isEmpty(ends)) {
+            return diff;
+        }
+        Date start = DateUtils.parseDate(starts);
+        Date end = DateUtils.parseDate(ends);
+        // 将指定日期转换为yyyy-MM-dd格式
+        start = DateUtils.parseDate(DateUtils.formatDate(start, DateUtils.DATE_FORMAT));
+        // 当前日期转换为yyyy-MM-dd格式
+        end = DateUtils.parseDate(DateUtils.formatDate(end, DateUtils.DATE_FORMAT));
+
+        if (start != null && end != null) {
+            diff = (end.getTime() - start.getTime()) / DateUtils.MILLISECONDS_PER_DAY;
+        }
+        return diff;
+    }
+
+    /**
      * 计算两个日期之前相隔多少周.
      *
      * @param start 计算开始时间
