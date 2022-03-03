@@ -18,7 +18,7 @@ public interface ExecutePayService {
     /**
      * 执行费用计算
      *
-     * @param calculateDto 计算参数
+     * @param executeDto 计算参数
      * @return
      */
     List<Object> executeCast(ExecuteDto executeDto);
