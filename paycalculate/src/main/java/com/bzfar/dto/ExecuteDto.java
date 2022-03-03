@@ -17,9 +17,9 @@ import javax.validation.constraints.NotBlank;
 @Builder
 public class ExecuteDto {
 
-    @ApiModelProperty("计算类型")
+    @ApiModelProperty("计算类型：17非金钱给付类 18金钱给付类")
     @NotBlank(message = "计算类型不能为空")
-    private ExecuteEnum type;
+    private String type;
 
     @ApiModelProperty("费用")
     @NotBlank(message = "计算费用不能为空")

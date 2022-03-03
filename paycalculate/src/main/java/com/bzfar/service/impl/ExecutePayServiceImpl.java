@@ -39,7 +39,7 @@ public class ExecutePayServiceImpl implements ExecutePayService {
 
     @Override
     public List<Object> executeCast(ExecuteDto executeDto) {
-        String function = CalculateAnn.methodMap.get(executeDto.getType().getType());
+        String function = CalculateAnn.methodMap.get(executeDto.getType());
         if (function == null) {
             throw new DataException("没有这种案件计算方式");
         }

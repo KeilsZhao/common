@@ -7,20 +7,20 @@ import lombok.Getter;
 @Getter
 public enum ExecuteEnum {
 
-    NOMONEY("17","非金钱给付类"),
-    MONEY("18","金钱给付类");
+    NOMONEY(17,"非金钱给付类"),
+    MONEY(18,"金钱给付类");
 
     /**
      * 类型ID
      */
-    private String type;
+    private Integer type;
 
     /**
      * 描述
      */
     private String desc;
 
-    ExecuteEnum(String type,String desc){
+    ExecuteEnum(Integer type,String desc){
         this.type = type;
         this.desc = desc;
     }
