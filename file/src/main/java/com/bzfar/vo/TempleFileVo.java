@@ -17,16 +17,16 @@ import lombok.*;
 @ToString
 public class TempleFileVo {
 
-    @ApiModelProperty("文件名称")
+    @ApiModelProperty("文件名称，如:xxx.png")
     private String fileName;
 
-    @ApiModelProperty("文件名称，不带后缀")
+    @ApiModelProperty("文件名称，不带后缀，如:xxx")
     private String name;
 
-    @ApiModelProperty("文件路径（全）")
+    @ApiModelProperty("文件路径（全）,如:/service/file/xxx.png")
     private String filePath;
 
-    @ApiModelProperty("存储的位置")
+    @ApiModelProperty("存储的位置,如：/service/file")
     private String path;
 
 }

@@ -18,11 +18,10 @@ import java.io.FileOutputStream;
 import java.util.TreeSet;
 
 /**
- * pdf转图片，该类废弃，使用PDFToImg
+ * pdf转图片，如果乱码情况需继续使用，使用PDFToImg
  */
 @Service
 @Slf4j
-@Deprecated
 public class PdfToJpegServiceImpl implements FormatConversionService {
 
     @Autowired

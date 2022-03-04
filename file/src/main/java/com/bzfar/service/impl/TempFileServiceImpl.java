@@ -2,6 +2,7 @@ package com.bzfar.service.impl;
 
 import com.bzfar.exception.DataException;
 import com.bzfar.service.TempFileService;
+import com.bzfar.util.AssertUtil;
 import com.bzfar.vo.TempleFileVo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -10,6 +11,8 @@ import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.security.SecureRandom;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -24,10 +27,15 @@ public class TempFileServiceImpl implements TempFileService {
 
     @Override
     public TempleFileVo createTempFile(String fileType, String sourceFilePath) {
+        return createTempFile(fileType, this.getFileStream(sourceFilePath));
+    }
+
+    @Override
+    public InputStream getFileStream(String path) {
         InputStream inputStream = null;
-        if (sourceFilePath.startsWith("http")) {
+        if (path.startsWith("http")) {
             try {
-                URL url = new URL(sourceFilePath);
+                URL url = new URL(path);
                 inputStream = url.openStream();
             } catch (MalformedURLException e) {
                 log.error("【网络路径错误】 = {}", e.getMessage());
@@ -35,14 +43,14 @@ public class TempFileServiceImpl implements TempFileService {
                 log.error("【文件错误】 = {}", e.getMessage());
             }
         } else {
-            File sourceFile = new File(sourceFilePath);
+            File sourceFile = new File(path);
             try {
                 inputStream = new FileInputStream(sourceFile);
             } catch (FileNotFoundException e) {
                 log.error("【本地文件错误】 = {}", e.getMessage());
             }
         }
-        return createTempFile(fileType, inputStream);
+        return inputStream;
     }
 
     @Override
@@ -85,6 +93,25 @@ public class TempFileServiceImpl implements TempFileService {
                 .filePath(filePath + "/" + names)
                 .path(filePath + "/").build();
         return build;
+    }
+
+    @Override
+    public List<TempleFileVo> listTempFile(List<String> filePath) {
+        AssertUtil.assertNull(filePath,"批量文件路径不能为空");
+        List<TempleFileVo> templeFileVos = new ArrayList<TempleFileVo>();
+        filePath.stream().forEach(item->{
+            String fileType = item.substring(item.lastIndexOf(".") + 1);
+            TempleFileVo tempFile = this.createTempFile(fileType, item);
+            templeFileVos.add(tempFile);
+        });
+        return templeFileVos;
+    }
+
+    @Override
+    public void listDeleteTempFile(List<TempleFileVo> fileVos) {
+        fileVos.stream().forEach(item->{
+            this.deleteTempFile(item.getPath());
+        });
     }
 
     @Override

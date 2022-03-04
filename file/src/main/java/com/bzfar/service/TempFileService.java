@@ -4,6 +4,7 @@ import com.bzfar.vo.TempleFileVo;
 import org.springframework.scheduling.annotation.Async;
 
 import java.io.InputStream;
+import java.util.List;
 
 /**
  * @author ""
@@ -21,6 +22,14 @@ public interface TempFileService {
      */
     TempleFileVo createTempFile(String fileType,String sourceFilePath);
 
+    /**
+     * 获取文件流
+     *
+     * @param path 文件路径
+     * @return 数据流
+     */
+    InputStream getFileStream(String path);
+
 
     /**
      * 创建需要转换的临时文件（传入文件类型及文件流）
@@ -30,6 +39,21 @@ public interface TempFileService {
      * @return
      */
     TempleFileVo createTempFile(String fileType,InputStream inputStream);
+
+    /**
+     * 批量创建本地文件
+     *
+     * @param filePath 文件路径
+     * @return 文件临时存储信息
+     */
+    List<TempleFileVo> listTempFile(List<String> filePath);
+
+    /**
+     * 批量删除临时文件
+     *
+     * @param fileVos
+     */
+    void listDeleteTempFile(List<TempleFileVo> fileVos);
 
 
     /**
