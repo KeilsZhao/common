@@ -1,5 +1,7 @@
 package com.bzfar.middleware;//package com.bzfar.controller;
 
+import com.bzfar.dto.SmsDto;
+import com.bzfar.exception.DataException;
 import com.bzfar.service.SmsService;
 import com.rabbitmq.client.Channel;
 import lombok.extern.slf4j.Slf4j;
@@ -8,7 +10,6 @@ import org.springframework.amqp.rabbit.annotation.RabbitHandler;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import com.alibaba.fastjson.JSON;
 
 import java.io.IOException;
 
@@ -27,15 +28,13 @@ public class SmsQueueConsumer {
      */
 
     @RabbitHandler
-    public void processHandler(String msg, Channel channel, Message message) throws IOException {
+    public void processHandler(SmsDto smsDto, Channel channel, Message message) throws IOException {
 
         try {
-            log.info("收到消息：{}", msg);
-            com.alibaba.fastjson.JSONObject jsondata = JSON.parseObject(JSON.toJSONString(msg));
+            log.info("收到消息：{}", smsDto);
             //TODO 具体业务
-            smsService.sendSms(jsondata.getString("phone"),jsondata.getString("content"));
-
-            //手动确认消息
+            smsService.sendSms(smsDto.getPhoneNumber(),smsDto.getContext());
+//            手动确认消息
             channel.basicAck(message.getMessageProperties().getDeliveryTag(), false);
 
         }  catch (Exception e) {
