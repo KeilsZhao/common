@@ -21,6 +21,7 @@ public class RabbitProducer {
 
     @Autowired
     private ReturnCallback returnCallbackService;
+    
 
     public void sendMessage(String exchange, String routingKey, Object msg) {
 
