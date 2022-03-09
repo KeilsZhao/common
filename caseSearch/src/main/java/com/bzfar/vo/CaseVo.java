@@ -50,4 +50,7 @@ public class CaseVo {
     @ApiModelProperty("被告")
     private String bg;
 
+    @ApiModelProperty("案号代码")
+    private String ahdm;
+
 }
