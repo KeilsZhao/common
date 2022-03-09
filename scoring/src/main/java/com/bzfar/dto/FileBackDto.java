@@ -27,6 +27,10 @@ public class FileBackDto {
     @JacksonXmlProperty(localName = "ahdm")
     private String ahdm;
 
+    @ApiModelProperty("材料流水号")
+    @JacksonXmlProperty(localName = "lsh")
+    private String lsh;
+
     @ApiModelProperty("FTP服务器信息")
     @JacksonXmlProperty(localName = "ftp")
     private FileBackFtpDto ftpDto;
