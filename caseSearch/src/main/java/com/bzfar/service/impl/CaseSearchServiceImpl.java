@@ -114,6 +114,7 @@ public class CaseSearchServiceImpl implements CaseSearchService {
                             .sycx("普通程序")
                             .yg(getYgName(thirdCaseVo.getDsr()))
                             .bg(getBgName(thirdCaseVo.getDsr()))
+                            .ahdm(thirdCaseVo.getAhdm())
                             .build();
                 }).collect(Collectors.toList());
             }
