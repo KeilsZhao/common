@@ -10,6 +10,7 @@ import com.bzfar.service.ExecutePayService;
 import com.bzfar.service.JiaofeiService;
 import com.bzfar.util.AssertUtil;
 import com.bzfar.util.DateUtils;
+import com.bzfar.util.PatternUtil;
 import com.bzfar.vo.DebitVo;
 import com.bzfar.vo.DelayPayVo;
 import lombok.extern.slf4j.Slf4j;
@@ -47,6 +48,7 @@ public class ExecutePayServiceImpl implements ExecutePayService {
         if (StringUtils.isBlank(fee1)) {
             fee1 = "0";
         }
+        PatternUtil.checkNum(fee1, "请输入正确的金额");
         BigDecimal fee = new BigDecimal(fee1);
         List<Object> data = new ArrayList();
         try {
@@ -63,6 +65,7 @@ public class ExecutePayServiceImpl implements ExecutePayService {
     public DelayPayVo delayCast(DelayDto delayDto) {
         String total = delayDto.getTotal();
         AssertUtil.assertEmpty(total, "金钱债务额不能为空");
+        PatternUtil.checkNum(total, "请输入正确的金钱债务额");
         String execute = delayDto.getExecute();
         DelayTimeEnum delayTime = delayDto.getDelayTime();
         AssertUtil.assertNull(delayTime, "利率单位不能为空");
@@ -76,6 +79,7 @@ public class ExecutePayServiceImpl implements ExecutePayService {
         }
         String rate = delayDto.getRate();
         AssertUtil.assertEmpty(rate, "费率不能为空");
+        PatternUtil.checkNum(rate, "请输入正确的费率");
         // 根据费率单位计算日利率
         BigDecimal ratePercent = new BigDecimal(rate).divide(new BigDecimal(100));
         BigDecimal dayRate = new BigDecimal(0);
