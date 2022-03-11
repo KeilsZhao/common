@@ -1,5 +1,6 @@
 package com.bzfar.service.impl;
 
+
 import com.bzfar.exception.DataException;
 import com.bzfar.service.HandleSms;
 import com.bzfar.service.SmsService;
@@ -21,6 +22,16 @@ public class SmsServiceImpl implements SmsService {
             throw new DataException(e.getMessage());
         }
     }
+
+//    private String getContent(String word){
+//        NewSmsEnum.back_msg.getContext();
+//        context.replaceAll("//{案号,30}" , "ah").replaceAll("{姓名,20}" , "name");
+//
+//    }
+//    private String replace(){
+//        String context = DemoEnum.login_code.getContext();
+//        context.replaceAll("//{案号,30}" , "ah").replaceAll("{姓名,20}" , "name");
+//    }
 
 
 //    @Override
