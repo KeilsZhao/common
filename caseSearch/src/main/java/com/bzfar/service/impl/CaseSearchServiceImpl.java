@@ -283,6 +283,7 @@ public class CaseSearchServiceImpl implements CaseSearchService {
             List<String> collect = mockCaseInfo.getData().stream().filter(item -> item.getAh().equals(ah)).map(item -> {
                 return item.getLsh();
             }).collect(Collectors.toList());
+            AssertUtil.assertNull(collect,"身份证号 暂无信息");
             String lsh = collect.get(0);
             String idCard = caseSearchInfoDto.getIdCard();
             AssertUtil.assertNull(idCard, "身份证号不能为空");
