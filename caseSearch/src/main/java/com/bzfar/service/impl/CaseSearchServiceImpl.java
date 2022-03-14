@@ -238,12 +238,12 @@ public class CaseSearchServiceImpl implements CaseSearchService {
         List<CaseProfileInfoVo> caseProfileInfoVos = new ArrayList<>();
         try {
             String idCard = caseSearchInfoDto.getIdCard();
-            AssertUtil.assertNull(idCard,"身份证号不能为空");
+            AssertUtil.assertNull(idCard, "身份证号不能为空");
             InputStream dsrInfo = MockUtil.getFileIo("DsrInfo.json");
             MockDsrInfo mockDsrInfo = objectMapper.readValue(dsrInfo, MockDsrInfo.class);
             List<MockDsrDetail> mockDsrDetailList = mockDsrInfo.getData().stream().filter(item -> item.getZjh().equals(idCard)).collect(Collectors.toList());
-            AssertUtil.assertNull(mockDsrDetailList,"身份证号暂无案件信息");
-            mockDsrDetailList.stream().forEach(item->{
+            AssertUtil.assertNull(mockDsrDetailList, "身份证号暂无案件信息");
+            mockDsrDetailList.stream().forEach(item -> {
                 CaseInfoVo caseInfoVo = this.caseInfoSearch(item.getLsh());
                 CaseDetailInfoVo detailInfoVo = caseInfoVo.getCaseDetailInfoVo();
                 CaseProfileInfoVo caseProfileInfoVo = CaseProfileInfoVo.builder()
@@ -267,7 +267,7 @@ public class CaseSearchServiceImpl implements CaseSearchService {
                 caseProfileInfoVo.setBg(bg);
                 caseProfileInfoVos.add(caseProfileInfoVo);
             });
-        }catch (Exception e){
+        } catch (Exception e) {
             throw new DataException(e.getMessage());
         }
         return caseProfileInfoVos;
@@ -283,7 +283,7 @@ public class CaseSearchServiceImpl implements CaseSearchService {
             List<String> collect = mockCaseInfo.getData().stream().filter(item -> item.getAh().equals(ah)).map(item -> {
                 return item.getLsh();
             }).collect(Collectors.toList());
-            AssertUtil.assertNull(collect,"身份证号 暂无信息");
+            AssertUtil.assertNull(collect, "身份证号 暂无信息");
             String lsh = collect.get(0);
             String idCard = caseSearchInfoDto.getIdCard();
             AssertUtil.assertNull(idCard, "身份证号不能为空");
@@ -293,16 +293,13 @@ public class CaseSearchServiceImpl implements CaseSearchService {
             List<MockDsrDetail> data = mockDsrInfo.getData();
             AssertUtil.assertNull(data, "当事人信息不存在");
             List<MockDsrDetail> collect1 = data.stream().filter(item -> item.getZjh().equals(idCard)).collect(Collectors.toList());
-            if (ObjectUtils.isEmpty(collect1)) {
-                throw new DataException("证件信息不存在");
-            } else {
-                // 校验流水号是否匹配
-                boolean contains = collect1.stream().map(item -> {
-                    return item.getLsh();
-                }).collect(Collectors.toList()).contains(lsh);
-                if (!contains) {
-                    throw new DataException("证件信息与案号不匹配");
-                }
+            AssertUtil.assertNull(collect1, "证件信息不存在");
+            // 校验流水号是否匹配
+            boolean contains = collect1.stream().map(item -> {
+                return item.getLsh();
+            }).collect(Collectors.toList()).contains(lsh);
+            if (!contains) {
+                throw new DataException("证件信息与案号不匹配");
             }
             CaseInfoVo caseInfoVo = this.caseInfoSearch(lsh);
             return caseInfoVo;
@@ -323,14 +320,16 @@ public class CaseSearchServiceImpl implements CaseSearchService {
             MockDlrInfo mockDlrInfo = objectMapper.readValue(dlrInfo, MockDlrInfo.class);
             List<MockDlrDetail> data = mockDlrInfo.getData();
             AssertUtil.assertNull(data, "律师信息有误");
-            List<String> collect = data.stream().filter(item -> item.getZjh().equals(lawyerCard)).map(item->{return item.getLsh();}).collect(Collectors.toList());
+            List<String> collect = data.stream().filter(item -> item.getZjh().equals(lawyerCard)).map(item -> {
+                return item.getLsh();
+            }).collect(Collectors.toList());
             AssertUtil.assertNull(collect, "律师信息不存在");
             InputStream caseInfo = MockUtil.getFileIo("CaseInfo.json");
             MockCaseInfo mockCaseInfo = objectMapper.readValue(caseInfo, MockCaseInfo.class);
             List<MockCaseDetail> collect1 = mockCaseInfo.getData().stream().filter(item -> item.getAh().equals(ah)).collect(Collectors.toList());
-            AssertUtil.assertNull(collect1,"证件号 暂无信息");
+            AssertUtil.assertNull(collect1, "证件号 暂无信息");
             String lsh = collect1.get(0).getLsh();
-            if(collect.contains(lsh)){
+            if (collect.contains(lsh)) {
                 lawyerCaseInfoVo.setDetail(true);
                 CaseInfoVo caseInfoVo = this.caseInfoSearch(lsh);
                 lawyerCaseInfoVo.setCaseInfoVo(caseInfoVo);
