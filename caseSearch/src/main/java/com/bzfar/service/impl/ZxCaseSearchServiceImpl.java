@@ -202,6 +202,10 @@ public class ZxCaseSearchServiceImpl implements ZxCaseSearchService {
         // 组装
         ZxCaseDetailInfoVo detailInfoVo = ZxCaseDetailInfoVo.builder()
                 .ay(detail.getAy())
+                .ah(detail.getAh())
+                .dz(detail.getDz())
+                .status(detail.getStatus())
+                .ajlx(detail.getAjlx())
                 .larq(detail.getLarq())
                 .jarq(detail.getJarq())
                 .cbbm(detail.getCbbm())
