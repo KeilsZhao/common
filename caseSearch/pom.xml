@@ -63,6 +63,7 @@
         </dependency>
     </dependencies>
 
+    <!-- 仓库地址 -->
     <repositories>
         <repository>
             <id>bzfar</id>
@@ -78,6 +79,12 @@
             </snapshots>
         </repository>
     </repositories>
+    <distributionManagement>
+        <repository>
+            <id>bzfar</id>
+            <url>http://60.205.180.13:8081/nexus/repository/bzfar/</url>
+        </repository>
+    </distributionManagement>
 
 
     <build>
