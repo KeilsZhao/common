@@ -1,22 +1,13 @@
 package com.bzfar.config;
 
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.baomidou.mybatisplus.autoconfigure.ConfigurationCustomizer;
 import com.baomidou.mybatisplus.core.config.GlobalConfig;
-import com.baomidou.mybatisplus.core.parser.ISqlParser;
-import com.baomidou.mybatisplus.extension.parsers.BlockAttackSqlParser;
-import com.baomidou.mybatisplus.extension.parsers.DynamicTableNameParser;
-import com.baomidou.mybatisplus.extension.parsers.ITableNameHandler;
 import com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor;
-import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
-import com.baomidou.mybatisplus.extension.plugins.handler.TableNameHandler;
 import com.baomidou.mybatisplus.extension.plugins.handler.TenantLineHandler;
 import com.baomidou.mybatisplus.extension.plugins.inner.DynamicTableNameInnerInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.inner.PaginationInnerInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.inner.TenantLineInnerInterceptor;
-import com.baomidou.mybatisplus.extension.plugins.tenant.TenantSqlParser;
 import com.bzfar.HeadContext;
-import com.bzfar.handle.TenantLineInnerHandler;
 import com.bzfar.table.TableProxy;
 import com.bzfar.table.TableSuffix;
 import com.bzfar.table.TenantLineInner;
@@ -46,11 +37,8 @@ public class MyBatisConfig {
     @Autowired
     private MetaHandler metaHandler;
 
-    @Autowired
-    private HttpServletRequest request;
-
-    @Autowired
-    private TenantLineInnerHandler tenantLineInnerHandler;
+//    @Autowired
+//    private TenantLineInnerHandler tenantLineInnerHandler;
 
     @Bean
     public GlobalConfig globalConfig() {
@@ -68,20 +56,28 @@ public class MyBatisConfig {
         DynamicTableNameInnerInterceptor dynamicTableNameInnerInterceptor = new DynamicTableNameInnerInterceptor();
         tableNames = getTableName();
         if (tableNames.size() > 0) {
-            dynamicTableNameInnerInterceptor.setTableNameHandlerMap(new HashMap<String, TableNameHandler>(2) {{
-                tableNames.forEach(tableTitle -> put(tableTitle, (sql, tableName) -> tableName + "_" + HeadContext.getFydm()));
-            }});
+            dynamicTableNameInnerInterceptor.setTableNameHandler(((sql, tableName) -> {
+                String newTableName = tableName;
+                if(tableNames.contains(tableName)){
+                    newTableName = tableName + "_" + HeadContext.getFydm();
+                }
+                return newTableName;
+            }));
         }
         suffixTables = getSuffixTableNames();
         if (suffixTables.size() > 0) {
-            dynamicTableNameInnerInterceptor.setTableNameHandlerMap(new HashMap<String, TableNameHandler>(2) {{
-                suffixTables.forEach(tableTitle -> put(tableTitle, (sql, tableName) -> tableName + "_" + HeadContext.getMysqlSuffix()));
-            }});
+            dynamicTableNameInnerInterceptor.setTableNameHandler(((sql, tableName) -> {
+                String newTableName = tableName;
+                if(suffixTables != null && suffixTables.contains(tableName)){
+                    newTableName = tableName + "_" + HeadContext.getMysqlSuffix();
+                }
+                return newTableName;
+            }));
         }
         if (tableNames.size() > 0 || suffixTables.size() > 0) {
             interceptor.addInnerInterceptor(dynamicTableNameInnerInterceptor);
         }
-        interceptor.addInnerInterceptor(new TenantLineInnerInterceptor(new TenantLineHandler() {
+       /** interceptor.addInnerInterceptor(new TenantLineInnerInterceptor(new TenantLineHandler() {
             @Override
             public Expression getTenantId() {
                 String deviceNum = HeadContext.getDeviceNum();
@@ -127,7 +123,7 @@ public class MyBatisConfig {
                 }
                 return filter;
             }
-        }));
+        }));*/
         interceptor.addInnerInterceptor(new PaginationInnerInterceptor());
         return interceptor;
     }
