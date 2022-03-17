@@ -6,7 +6,7 @@ import lombok.Getter;
 
 @Getter
 @ApiModel("短息模板")
-public enum NewSmsEnum {
+public enum NewSmsEnum implements BaseEnum{
     LOGIN_CODE("{案号,30}，{姓名,20}（{部门,30}），联系方式：{手机号码,20}，通过云柜系统给您存件，请及时取件，取件码：{取件码,10}，取件二维码：{二维码,100} 。"),
     GET_CODE("您正在进行短信验证，验证码：{验证码,6}，请勿告知他人{标点,1}"),
     TAKE_MSG(" {案号,20}，{姓名,20}（{单位,60}/{类型,10}），联系方式：{手机号 , 20}，通过云柜系统给您存件，请及时取件，取件码：{取件码 , 6}，取件二维码： {二维码地址 , 30} 。"),

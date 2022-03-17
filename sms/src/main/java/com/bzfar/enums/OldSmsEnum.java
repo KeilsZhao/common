@@ -5,7 +5,7 @@ import lombok.Getter;
 
 @Getter
 @ApiModel("短息模板")
-public enum OldSmsEnum {
+public enum OldSmsEnum implements BaseEnum{
 
     FUCHENG_MSG("【智能材料收转云柜】您好，柜格可用数量@个，请注意及时处理。"),
     YJFG_MSG("【@】您好@法官,手机号@ ,通过约见法官终端给你留言。@@@@ "),

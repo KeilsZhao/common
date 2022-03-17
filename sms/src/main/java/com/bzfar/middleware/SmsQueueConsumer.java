@@ -1,7 +1,6 @@
 package com.bzfar.middleware;//package com.bzfar.controller;
 
-import com.bzfar.dto.SmsDto;
-import com.bzfar.exception.DataException;
+import com.bzfar.dto.QueueDto;
 import com.bzfar.service.SmsService;
 import com.rabbitmq.client.Channel;
 import lombok.extern.slf4j.Slf4j;
@@ -28,12 +27,12 @@ public class SmsQueueConsumer {
      */
 
     @RabbitHandler
-    public void processHandler(SmsDto smsDto, Channel channel, Message message) throws IOException {
+    public void processHandler(QueueDto queueDto, Channel channel, Message message) throws IOException {
 
         try {
-            log.info("收到消息：{}", smsDto);
+            log.info("收到消息：{}", queueDto);
             //TODO 具体业务
-            smsService.sendSms(smsDto.getPhoneNumber(),smsDto.getContext());
+            smsService.sendSms(queueDto.getBaseEnum(),queueDto.getPhoneNumber(),queueDto.getContext());
 //            手动确认消息
             channel.basicAck(message.getMessageProperties().getDeliveryTag(), false);
 
