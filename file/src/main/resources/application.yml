@@ -1,3 +1,5 @@
+server:
+  port: 8989
 minio:
   # bucket名称
   bucket: ethons

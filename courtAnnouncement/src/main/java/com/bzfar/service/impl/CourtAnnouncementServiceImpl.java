@@ -5,7 +5,7 @@ import com.bzfar.exception.DataException;
 import com.bzfar.service.CourtAnnouncementService;
 import com.bzfar.util.AssertUtil;
 import com.bzfar.util.DateUtils;
-import com.bzfar.utils.MockUtil;
+import com.bzfar.utils.MockUtils;
 import com.bzfar.vo.AnnouncementVo;
 import com.bzfar.vo.CourtAnnouncementVo;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -34,7 +34,7 @@ public class CourtAnnouncementServiceImpl implements CourtAnnouncementService {
             String endTimes = courtAnnouncementDto.getEndTime();
             AssertUtil.assertNull(endTimes, "结束时间不能为空");
             Date endTime = sb.parse(endTimes + " 00:00:00");
-            InputStream fileIo = MockUtil.getFileIo("courtAnnouncement.json");
+            InputStream fileIo = MockUtils.getFileIo("courtAnnouncement.json");
             AnnouncementVo announcementVo = objectMapper.readValue(fileIo, AnnouncementVo.class);
             List<CourtAnnouncementVo> data = announcementVo.getData();
             AssertUtil.assertEmpty(data, "开庭信息为空");
