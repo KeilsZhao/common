@@ -28,7 +28,7 @@ public class ImageLongServiceTest {
 
     @Test
     public void splicingImage() {
-        String path = "C:\\Users\\Administrator\\Desktop\\maven使用手册.pdf";
+        String path = "C:\\Users\\Administrator\\Desktop\\225120220307000018_00341d3e353c6621428e881c1741c841fe09SING.pdf";
         FormatConversionService formatConversionService = FormatConversionFactory.getFormatConversionService(FormatConversionEnum.PDFTOIMG);
         FormatVo pdf = formatConversionService.conversionFormat("pdf", path);
         TreeSet<String> imgUrl = pdf.getImgUrl();

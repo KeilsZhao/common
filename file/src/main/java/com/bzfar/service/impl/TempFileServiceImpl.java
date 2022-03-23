@@ -31,8 +31,7 @@ public class TempFileServiceImpl implements TempFileService {
     }
 
     @Override
-    public InputStream getFileStream(String path) {
-        InputStream inputStream = null;
+    public InputStream getFileStream(String path) {InputStream inputStream = null;
         if (path.startsWith("http")) {
             try {
                 URL url = new URL(path);
@@ -81,6 +80,7 @@ public class TempFileServiceImpl implements TempFileService {
             throw new DataException("创建临时文件错误");
         } finally {
             try {
+                outSteam.flush();
                 outSteam.close();
                 inputStream.close();
             } catch (IOException e) {
