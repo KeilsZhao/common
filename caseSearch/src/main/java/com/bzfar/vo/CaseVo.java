@@ -53,4 +53,18 @@ public class CaseVo {
     @ApiModelProperty("案号代码")
     private String ahdm;
 
+    @ApiModelProperty("结案方式")
+    private String jafs;
+
+    @ApiModelProperty("原审案号")
+    private String ysah;
+
+    @ApiModelProperty("适用程序")
+    private String sxsj;
+
+    @ApiModelProperty("立案人")
+    private String lar;
+
+    @ApiModelProperty("ajly")
+    private String ajly;
 }

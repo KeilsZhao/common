@@ -1,7 +1,7 @@
 spring:
   rabbitmq:
     host: 127.0.0.1
-    port: 5672
+    port: 5673
     username: guest
     password: guest
     # 发送者开启 confirm 确认机制
