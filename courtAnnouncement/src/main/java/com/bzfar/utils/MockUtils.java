@@ -13,7 +13,7 @@ import java.io.InputStream;
  * 标准版新版案件查询mock数据获取
  * @author Administrator
  */
-public class MockUtil {
+public class MockUtils {
 
     /**
      * jar内部mock获取

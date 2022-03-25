@@ -1,6 +1,6 @@
 package com.bzfar.util;
 
-import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
+import org.springframework.util.ObjectUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +18,7 @@ public class TreeUtil {
 
     private static <T extends Tree> T getChild(List<T> childs , T parent){
         List<T> childList = getChildList(childs, parent);
-        if(CollectionUtils.isNotEmpty(childList)){
+        if(!ObjectUtils.isEmpty(childList)){
             childs.removeAll(childList);
             for (T child : childList){
                 if(parent.getChild() == null){
