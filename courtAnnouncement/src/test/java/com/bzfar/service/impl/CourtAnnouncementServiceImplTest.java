@@ -25,8 +25,8 @@ public class CourtAnnouncementServiceImplTest {
 
     @Test
     public void queryCourtAnnouncementInfo() throws ParseException {
-        String beginDate = "2021-01-02";
-        String endDate = "2022-01-02";
+        String beginDate = "2021-03-26";
+        String endDate = "2022-03-26";
         CourtAnnouncementDto build = CourtAnnouncementDto.builder()
                 .beginTime(beginDate)
                 .endTime(endDate)
