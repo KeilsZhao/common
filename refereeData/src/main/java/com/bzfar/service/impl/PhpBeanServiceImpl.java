@@ -41,7 +41,7 @@ public class PhpBeanServiceImpl implements PhpBeanService {
     public CompletableFuture<List<DataInfo>> appInfo(String query, Integer max) {
         mListQuestion = new HashMap<Double, String>();
         String[] fields = {"ay"};
-        List<HashMap<String, String>> questions = dbSearchLuece.getQuestion(query,fields);
+        List<HashMap<String, String>> questions = dbSearchLuece.getQuestion(query,fields,max);
         List<DataInfo> list = new ArrayList<>();
         for (int i = 0 ; i < questions.size(); i++){
             try {
@@ -69,7 +69,7 @@ public class PhpBeanServiceImpl implements PhpBeanService {
     public CompletableFuture<List<DataInfo>> causeFuzzySearch(String ay, Integer max) {
         mListQuestion = new HashMap<Double, String>();
         String[] fields = {"ay"};
-        List<HashMap<String, String>> questions = dbSearchLuece.getQuestion(ay,fields);
+        List<HashMap<String, String>> questions = dbSearchLuece.getQuestion(ay,fields,max);
         List<DataInfo> list = new ArrayList<>();
         for (int i = 0 ; i < questions.size(); i++){
             try {
@@ -97,7 +97,7 @@ public class PhpBeanServiceImpl implements PhpBeanService {
     public CompletableFuture<List<DataInfo>> courtNameFuzzySearch(String courtName, Integer max) {
         mListQuestion = new HashMap<Double, String>();
         String[] fields = {"countName"};
-        List<HashMap<String, String>> questions = dbSearchLuece.getQuestion(courtName,fields);
+        List<HashMap<String, String>> questions = dbSearchLuece.getQuestion(courtName,fields,max);
         List<DataInfo> list = new ArrayList<>();
         for (int i = 0 ; i < questions.size(); i++){
             try {
