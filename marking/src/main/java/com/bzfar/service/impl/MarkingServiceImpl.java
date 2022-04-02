@@ -38,7 +38,7 @@ public class MarkingServiceImpl implements MarkingService {
         try {
             String idCard = caseSearchInfoDto.getIdCard();
             AssertUtil.assertNull(idCard, "身份证号不能为空");
-            InputStream dsrInfo = MockUtil.getFileIo("DsrInfo.json");
+            InputStream dsrInfo = MarkingMockUtil.getFileIo("markingDsrInfo.json");
             MockDsrInfo mockDsrInfo = objectMapper.readValue(dsrInfo, MockDsrInfo.class);
             List<MockDsrDetail> mockDsrDetailList = mockDsrInfo.getData().stream().filter(item -> item.getZjh().equals(idCard)).collect(Collectors.toList());
             AssertUtil.assertNull(mockDsrDetailList, "身份证号暂无案件信息");
@@ -80,7 +80,7 @@ public class MarkingServiceImpl implements MarkingService {
             AssertUtil.assertNull(lawyerCard, "律师资格证号不能为空");
             String ah = caseSearchInfoDto.getAh();
             AssertUtil.assertNull(ah, "案号不能为空");
-            InputStream dlrInfo = MockUtil.getFileIo("DlrInfo.json");
+            InputStream dlrInfo = MarkingMockUtil.getFileIo("markingDlrInfo.json");
             MockDlrInfo mockDlrInfo = objectMapper.readValue(dlrInfo, MockDlrInfo.class);
             List<MockDlrDetail> data = mockDlrInfo.getData();
             AssertUtil.assertNull(data, "律师信息有误");
@@ -88,7 +88,7 @@ public class MarkingServiceImpl implements MarkingService {
                 return item.getLsh();
             }).collect(Collectors.toList());
             AssertUtil.assertNull(collect, "律师信息不存在");
-            InputStream caseInfo = MockUtil.getFileIo("CaseInfo.json");
+            InputStream caseInfo = MarkingMockUtil.getFileIo("markingCaseInfo.json");
             MockCaseInfo mockCaseInfo = objectMapper.readValue(caseInfo, MockCaseInfo.class);
             List<MockCaseDetail> collect1 = mockCaseInfo.getData().stream().filter(item -> item.getAh().equals(ah)).collect(Collectors.toList());
             AssertUtil.assertNull(collect1, "证件号 暂无信息");
@@ -132,13 +132,13 @@ public class MarkingServiceImpl implements MarkingService {
         String zjh = caseSearchInfoDto.getZjh();
         AssertUtil.assertNull(zjh, "当事人证件信息不能为空");
         try {
-            InputStream caseInfo = MockUtil.getFileIo("CaseInfo.json");
+            InputStream caseInfo = MarkingMockUtil.getFileIo("markingCaseInfo.json");
             MockCaseInfo mockCaseInfo = objectMapper.readValue(caseInfo, MockCaseInfo.class);
             List<String> collect = mockCaseInfo.getData().stream().filter(item -> item.getAh().equals(ah)).map(item -> {
                 return item.getLsh();
             }).collect(Collectors.toList());
             String lsh = collect.get(0);
-            InputStream dsrInfo = MockUtil.getFileIo("DsrInfo.json");
+            InputStream dsrInfo = MarkingMockUtil.getFileIo("markingDsrInfo.json");
             MockDsrInfo mockDsrInfo = objectMapper.readValue(dsrInfo, MockDsrInfo.class);
             List<MockDsrDetail> data = mockDsrInfo.getData();
             AssertUtil.assertNull(data, "当事人信息不存在");
@@ -159,18 +159,18 @@ public class MarkingServiceImpl implements MarkingService {
         CaseDetailInfoVo caseDetailInfoVo = new CaseDetailInfoVo();
         try {
             // 案件列表
-            InputStream caseInfo = MockUtil.getFileIo("CaseInfo.json");
+            InputStream caseInfo = MarkingMockUtil.getFileIo("markingCaseInfo.json");
             MockCaseInfo mockCaseInfo = objectMapper.readValue(caseInfo, MockCaseInfo.class);
             List<MockCaseDetail> mockCaseDetailList = mockCaseInfo.getData().stream().filter(item -> item.getLsh().equals(lsh)).collect(Collectors.toList());
             if (mockCaseDetailList.size() > 1) {
                 throw new DataException("流水号：" + lsh + "案件信息错误，请检查mock数据");
             }
             // 案件当事人
-            InputStream dsrInfo = MockUtil.getFileIo("DsrInfo.json");
+            InputStream dsrInfo = MarkingMockUtil.getFileIo("markingDsrInfo.json");
             MockDsrInfo mockDsrInfo = objectMapper.readValue(dsrInfo, MockDsrInfo.class);
             List<MockDsrDetail> mockDsrDetailList = mockDsrInfo.getData().stream().filter(item -> item.getLsh().equals(lsh)).collect(Collectors.toList());
             // 代理人
-            InputStream dlrInfo = MockUtil.getFileIo("DlrInfo.json");
+            InputStream dlrInfo = MarkingMockUtil.getFileIo("markingDlrInfo.json");
             MockDlrInfo mockDlrInfo = objectMapper.readValue(dlrInfo, MockDlrInfo.class);
             List<MockDlrDetail> mockDlrDetailList = mockDlrInfo.getData().stream().filter(item -> item.getLsh().equals(lsh)).collect(Collectors.toList());
             // 处理原告被告及代理人之间的对应关系

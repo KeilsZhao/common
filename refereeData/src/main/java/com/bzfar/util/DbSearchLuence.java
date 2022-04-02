@@ -59,7 +59,7 @@ public class DbSearchLuence {
 		return indexReader;
 	}
 	
-	public void search(String keyWord,String[] fields) {
+	public void search(String keyWord,String[] fields,int max) {
 		DirectoryReader directoryReader = null;
 		this.mQuestionList.clear();
 		try {
@@ -68,7 +68,7 @@ public class DbSearchLuence {
 //			String[] fields = { "ay" ,"countName"};
 			BooleanClause.Occur[] clauses = { BooleanClause.Occur.SHOULD };
 			Query multiFieldQuery = MultiFieldQueryParser.parse(keyWord, fields, clauses, (Analyzer)iKAnalyzer);
-			TopDocs topDocs = indexSearcher.search(multiFieldQuery, 1000);
+			TopDocs topDocs = indexSearcher.search(multiFieldQuery, max);
 			System.out.println("共找到匹配处：" + topDocs.totalHits);
 			ScoreDoc[] scoreDocs = topDocs.scoreDocs;
 			System.out.println("共找到匹配文档数：" + scoreDocs.length);
@@ -145,9 +145,9 @@ public class DbSearchLuence {
 		}
 	}
 	
-	public List<HashMap<String, String>> getQuestion(String search,String[] fields) {
+	public List<HashMap<String, String>> getQuestion(String search,String[] fields,int max) {
 		long start = System.currentTimeMillis();
-		search(search,fields);
+		search(search,fields,max);
 		System.out.println("查询时间" + (System.currentTimeMillis() - start));
 		return this.mQuestionList;
 	}

@@ -32,7 +32,7 @@ public class PdfToImgServiceImpl implements FormatConversionService {
 
 
     @Override
-    public FormatVo conversionFormat(String oldType, String sourceFilePath) {
+    public synchronized FormatVo conversionFormat(String oldType, String sourceFilePath) {
         if (!AsposeLicenseUtil.pdfLicense()) {
             return null;
         }
@@ -47,9 +47,9 @@ public class PdfToImgServiceImpl implements FormatConversionService {
             // 例： new JpegDevice(800, 1000, resolution, 90);
             Resolution resolution = new Resolution(960);
             JpegDevice jpegDevice = new JpegDevice(resolution);
+            Long startTs = System.currentTimeMillis();
             for (int index = 1; index <= pdfDocument.getPages().size(); index++) {
                 // 输出路径
-                Long startTs = System.currentTimeMillis();
                 String newName = startTs + "-new-" + index + ".jpg";
                 File file = new File(pathUtil.concatStore(newName));
                 FileOutputStream fileOs = new FileOutputStream(file);

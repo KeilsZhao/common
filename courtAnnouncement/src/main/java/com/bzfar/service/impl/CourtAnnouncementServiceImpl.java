@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.InputStream;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -27,21 +28,28 @@ public class CourtAnnouncementServiceImpl implements CourtAnnouncementService {
     @Override
     public List<CourtAnnouncementVo> queryCourtAnnouncementInfo(CourtAnnouncementDto courtAnnouncementDto) {
         try {
-            SimpleDateFormat sb = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            SimpleDateFormat sb = new SimpleDateFormat("yyyy-MM-dd");
             String beginTimes = courtAnnouncementDto.getBeginTime();
             AssertUtil.assertNull(beginTimes, "开始时间不能为空");
-            Date beginTime = sb.parse(beginTimes + " 00:00:00");
+            Date beginTime = sb.parse(beginTimes);
             String endTimes = courtAnnouncementDto.getEndTime();
             AssertUtil.assertNull(endTimes, "结束时间不能为空");
-            Date endTime = sb.parse(endTimes + " 00:00:00");
+            Date endTime = sb.parse(endTimes);
             InputStream fileIo = MockUtils.getFileIo("courtAnnouncement.json");
             AnnouncementVo announcementVo = objectMapper.readValue(fileIo, AnnouncementVo.class);
             List<CourtAnnouncementVo> data = announcementVo.getData();
             AssertUtil.assertEmpty(data, "开庭信息为空");
-            String date = DateUtils.getDate("yyyy-MM-dd") + " 00:00:00";
+            String date = DateUtils.getDate("yyyy-MM-dd");
             Date today = sb.parse(date);
             List<CourtAnnouncementVo> collect = data.stream().filter(item -> {
-                Date courtTime = item.getCourtTime();
+                Date courtTimes = item.getCourtTime();
+                String format = sb.format(courtTimes);
+                Date courtTime = null;
+                try {
+                    courtTime = sb.parse(format);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
                 if (courtTime.compareTo(beginTime) >= 0 && courtTime.compareTo(endTime) <= 0) {
                     if (courtTime.compareTo(today) > 0) {
                         item.setStatus("待开庭");

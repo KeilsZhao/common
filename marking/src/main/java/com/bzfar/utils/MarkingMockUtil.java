@@ -13,12 +13,12 @@ import java.io.InputStream;
  * 标准版新版案件查询mock数据获取
  * @author Administrator
  */
-public class MockUtil {
+public class MarkingMockUtil {
 
     /**
      * jar内部mock获取
      */
-    private final static String filePath = "classpath*:mock1/";
+    private final static String filePath = "classpath*:mock/";
 
     /**
      * jar同级文件获取
