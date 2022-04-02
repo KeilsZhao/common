@@ -28,6 +28,14 @@ public interface CaseSearchService {
      */
     CaseListVo searchSc(CaseSearchDto caseSearchDto);
 
+
+    /**
+     * 洪山区
+     * @param caseSearchDto
+     * @return
+     */
+    CaseListVo searchHs(CaseSearchDto caseSearchDto);
+
     /**
      * 标准版案件当事人不能输入案号时查询
      *

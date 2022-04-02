@@ -12,6 +12,7 @@ import com.bzfar.service.CaseSearchService;
 import com.bzfar.util.AssertUtil;
 import com.bzfar.util.DateUtils;
 import com.bzfar.utils.HandleFile;
+import com.bzfar.utils.HttpRequestUtils;
 import com.bzfar.utils.MockJarPathUtils;
 import com.bzfar.utils.MockUtil;
 import com.bzfar.vo.*;
@@ -182,6 +183,62 @@ public class CaseSearchServiceImpl implements CaseSearchService {
                     .build());
         }
         return CaseListVo.builder().caseVos(caseVos).build();
+    }
+
+    @Override
+    public CaseListVo searchHs(CaseSearchDto caseSearchDto) {
+            // 年度
+            String nd = caseSearchDto.getNd();
+            // 代字
+            String dz = caseSearchDto.getDz();
+            // 序号
+            String xh = caseSearchDto.getXh();
+            // 案号
+            String ah = caseSearchDto.getAh();
+            // 身份证号码
+            String sfzhm = caseSearchDto.getSfzh();
+            // 组织机构代码
+            String zzjgdm = caseSearchDto.getZjh();
+            // 律师职业资格证
+            String lszyzgz = caseSearchDto.getZjh();
+            // 当前页
+            String pageNum = "1";
+            // 每页条数
+            String pageCount = "100";
+            // 法院代码
+            String fydm = caseSearchDto.getFydm();
+            String data1;
+            try {
+                data1 =   HttpRequestUtils.httpGet("http://144.4.88.55:81/tongdahai/api.php/zhangwan/caseSearch?SFZHM="+sfzhm+"&AH="+ah+"&lszyzgz="+lszyzgz+"&ND="+nd);
+            }catch (Exception e){
+                throw new DataException("暂无信息");
+            }
+            log.info("==data="+data1);
+            com.alibaba.fastjson.JSONObject jsondata1 = JSON.parseObject(data1);
+            if (!jsondata1.get("code").toString().equals("200")) {
+                throw new DataException("暂无信息");
+            } else {
+                List<CaseVo> caseVos = new ArrayList();
+                JSONArray data = (JSONArray)jsondata1.get("data");
+                System.out.println(data);
+
+                for(int j = 0; j < data.size(); ++j) {
+                    JSONObject aj = JSON.parseObject(JSON.toJSONString(data.get(j)));
+                    caseVos.add(CaseVo.builder().ah(aj.getString("AH"))
+                            .type(aj.getString("AJLB")).status(aj.getString("AJZTMS"))
+                            .ay(aj.getString("AYMS")).larq(aj.getString("LARQ")).jarq(aj.getString("JARQ"))
+                            .cbbm(aj.getString("CBBM1")).cbr(aj.getString("CBRMC")).sycx("起诉")
+                            .yg(this.getYgName(aj.getString("DSR"))).bg(this.getBgName(aj.getString("DSR")))
+                            .jafs("-")
+                            .ysah(aj.getString("AH"))
+                            .sxsj("")
+                            .lar(this.getYgName(aj.getString("DSR")))
+                            .ajly("当事人起诉")
+                            .build());
+                }
+                return CaseListVo.builder().caseVos(caseVos).build();
+            }
+
     }
 
     /**

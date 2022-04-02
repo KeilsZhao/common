@@ -1,6 +1,5 @@
 package com.bzfar.service.impl;
 
-import com.baomidou.mybatisplus.core.toolkit.ObjectUtils;
 import com.bzfar.dto.ZxCaseSearchInfoDto;
 import com.bzfar.exception.DataException;
 import com.bzfar.service.ZxCaseSearchService;
@@ -10,6 +9,7 @@ import com.bzfar.vo.caseSearch.zxNewCaseInfo.*;
 import com.bzfar.vo.caseSearch.zxNewCaseInfo.mock.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
